@@ -5,17 +5,9 @@ import styles from "./FriendList.module.css";
 
 const FriendList = ({friends}) => (
     <ul className={styles.friendList}>
-        {friends.map(friend => (
-            <li key={friend.id} className={styles.item}>
-                <FriendListItem
-                    avatar={friend.avatar}
-                    name={friend.name}
-                    isOnline={friend.isOnline}
-                />
-            </li>
-        ))
-        }
-        </ul>
+        <FriendListItem friends={friends}
+        />
+    </ul>
 )
 
 FriendList.propTypes = {
