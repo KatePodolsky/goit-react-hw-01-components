@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Stats from "./stats";
 import defaulFoto from "./defaultFotoUser.jpg";
 import styles from "./Profile.module.css"
 
-const Profile = ({avatar,name,tag,location,followers,views,likes}) => (
+const Profile = ({avatar,name,tag,location,stats}) => (
     <div className={styles.profile}>
         <div className="description">
             <img
@@ -16,7 +15,21 @@ const Profile = ({avatar,name,tag,location,followers,views,likes}) => (
             <p className={styles.tag}>@{tag}</p>
             <p className={styles.location}>{location}</p>
         </div>
-        <Stats followers={followers} views={views} likes={likes} />
+
+        <ul className={styles.stats}>
+        <li>
+            <span className={styles.label}>Followers</span>
+            <span className={styles.quantity}>{stats.followers}</span>
+        </li>
+        <li>
+            <span className={styles.label}>Views</span>
+            <span className={styles.quantity}>{stats.views}</span>
+        </li>
+        <li>
+            <span className={styles.label}>Likes</span>
+            <span className={styles.quantity}>{stats.likes}</span>
+        </li>
+    </ul>
     </div>
 )
 
@@ -28,10 +41,12 @@ Profile.propTypes = {
     avatar:PropTypes.string,
     name:PropTypes.string.isRequired,
     tag:PropTypes.string.isRequired,
-    location:PropTypes.string.isRequired,
-    followers:PropTypes.number.isRequired,
-    views:PropTypes.number.isRequired,
-    likes:PropTypes.number.isRequired,
+    location: PropTypes.string.isRequired,
+    stats: PropTypes.shape({
+        followers:PropTypes.number.isRequired,
+        views:PropTypes.number.isRequired,
+        likes:PropTypes.number.isRequired,
+    }).isRequired,
 }
 
 export default Profile
